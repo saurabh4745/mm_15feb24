@@ -1,0 +1,37 @@
+<html>
+    <head>
+        <title>Motivational Message Application</title>
+        <style>
+            *{font-size: 40px;font-family:Georgia, 'Times New Roman', Times, serif;}
+            body{background-image: url('im.jpg');}
+            h1,h2{color:rgb(14, 10, 64);}
+        </style>
+        <script>
+            function gm()
+            {
+                event.preventDefault();
+                let msg=document.getElementById("id_msg");
+                let url="https://api.quotable.io/random";
+                fetch(url)
+                .then(res=>res.json())
+                .then(data=>{
+                    let content=data.content + "=>" + data.author;
+                    msg.innerHTML=content;
+                })
+                .catch(err=>{
+                    let ans="issue" + err;
+                    msg.innerHTML=ans;
+                });
+            }
+        </script>
+    </head>
+    <body>
+        <center>
+            <h1>Motivational Message Wallah by Saurabh Shelke</h1>
+            <form onsubmit="gm()">
+            <input type="submit" value="Get Message"/>
+            <h2 id="id_msg"/>
+        </center>
+
+    </body>
+</html>
